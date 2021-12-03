@@ -1,0 +1,36 @@
+.page-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    background-color: #fff;
+    color: #000;
+    border: 0.8px solid #000;
+    border-radius: 4px;
+    margin-top: 30px;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.page-item:hover{
+    background-color: #B2B2B2;
+}
+
+.page-link{
+    display: inline-block;
+    flex-direction: row;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000
+}
+
+
+.pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
