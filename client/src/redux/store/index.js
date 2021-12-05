@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
-import newPost from '../../reducer';
+import recipeReducer from  '../reducers/index'
 
 export const store = createStore(
-  newPost, 
+  recipeReducer, 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );

@@ -9,7 +9,7 @@ const Recipe = ({title, image, diet, loading}) =>{
     return(
         <div className='Recipe'>
             <h4>{title}</h4>
-            <img src={image} className='image'/>
+            <img src={image} className='image' alt=''/>
             <div>
                 {diet.map(e=><span className='span'>{e}, </span>)}
             </div>

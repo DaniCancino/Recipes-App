@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Init from './components/Init';
 import Home from './components/Home';
@@ -9,10 +9,6 @@ import Recipe from './components/Recipe';
 
 
 function App() {
-  const [state, setState] = useState([]);
-
-
-
 
   return (
     <div className="App">
@@ -30,7 +26,7 @@ function App() {
           <Recipe />
         </Route>
         <Route exact path='/home/add'><Add /></Route>
-        <Route>404 Not Found!</Route>
+        <Route><h1>404 Not Found!</h1></Route>
       </Switch>
     </div>
   );

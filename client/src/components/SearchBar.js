@@ -3,6 +3,7 @@ import './SearchBar.css'
 
 const SearchBar = () =>{
     const [element, setElement] = useState("");
+    console.log(element)
 
     return(
         <div className = 'search-bar'>

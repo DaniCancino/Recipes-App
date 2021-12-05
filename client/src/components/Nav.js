@@ -4,11 +4,12 @@ import './Nav.css'
 import SearchBar from './SearchBar';
 
 
-const scroll = (number) =>{
+const scroll = () =>{
     window.scroll(0,0)
   }
 
-const Nav = () =>{
+const Nav = () =>{ 
+ 
     return(
         <div className='Nav'>
             <Link className='links' id ='home' to='/home' className='link'>HOME</Link>

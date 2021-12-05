@@ -15,13 +15,13 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    puntuacion: {
+    score: {
       type: DataTypes.INTEGER
     },
-    nivel: {
+    level: {
       type: DataTypes.INTEGER
     },
-    pasos: {
+    step: {
       type: DataTypes.TEXT
     }
   });
