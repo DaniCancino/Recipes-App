@@ -1,7 +1,7 @@
 .filter{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 50%;
     height: 45px;
@@ -10,13 +10,33 @@
 }
 
 .select{
-    width: 220px;
-    height: 30px;
+    width: 225px;
+    height: 35px;
     margin-top: 20px;
     border-radius: 3px;
     border: none;
+    cursor: pointer;
 }
 
 .select:focus{
     outline: none;
+}
+
+.select-button{
+    width: 70px;
+    height: 40px;
+    margin-left: -50px;
+    margin-top: 21px;
+    border: 0.8px solid #BB1140;
+    border-radius: 5px;
+    background:#C70039;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f1f1f1
+}
+
+.select-button:active{
+    transform: scale(0.9, 0.9);
 }

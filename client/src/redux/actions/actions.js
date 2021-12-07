@@ -1,13 +1,28 @@
 export const getRecipe = (payload) =>{
     return{
-        type: 'getRecipe',
+        type: 'GET_RECIPE',
         payload
     }
 }
 
 export const addRecipe = (payload) =>{
     return{
-        type: 'addRecipe',
+        type: 'ADD_RECIPE',
         payload
     }
 }
+
+export const filteredByName = (payload) =>{
+    return{
+        type: 'FILTERED_BY_NAME',
+        payload
+    }
+}
+
+export const ordered = (payload) =>{
+    return{
+        type: 'ORDERED',
+        payload
+    }
+}
+

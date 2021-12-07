@@ -5,15 +5,26 @@ import Recipe from './Recipe';
 import Pagination from './Pagination';
 import Posts from './Posts';
 import Footer from './Footer';
-import { useDispatch, useSelector, connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
-// const API_KEY= '671cef72b5aa4789baf05df16611c658'
-// const apikey = '8322db0795194094af7f01b8896bd299'
+// const api1= 671cef72b5aa4789baf05df16611c658
+// const api2 = 8322db0795194094af7f01b8896bd299
+// const api3 = 8ad03076faf14bb1b08925504a99dffa
 //'https://api.spoonacular.com/recipes/informationBulk?apiKey=671cef72b5aa4789baf05df16611c658&ids=715538,715594,715497'
 
 const Home = () =>{
-    const store = useSelector((state) => state)
+    const store = useSelector((state) => {
+        if(state.filteredByName.length > 0){
+            return state.filteredByName
+        } else if(state.filteredByDiet.length > 0){
+            return state.filteredByDiet
+        }else if(state.sorted.length > 0){
+            return state.sorted
+        }else{
+            return state.listRecipe
+        }
+    })
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -22,11 +33,11 @@ const Home = () =>{
     const getRecipe = async () =>{
         try{
             setLoading(true);
-        const response = await fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=671cef72b5aa4789baf05df16611c658&addRecipeInformation=true&number=90')
+        const response = await fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=8ad03076faf14bb1b08925504a99dffa&addRecipeInformation=true&number=90')
         const data = await response.json()
         const resource = data.results;
         dispatch({
-            type: 'getRecipe',
+            type: 'GET_RECIPE',
             payload: resource
         })
         setLoading(false);
@@ -40,10 +51,10 @@ const Home = () =>{
     const handleClick = (num) =>{
         setCurrentPage(num)
     } 
-
+    //store.slice(indexOfFirstPost, indexOfLastPost)
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = store.listRecipe.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = store.slice(indexOfFirstPost, indexOfLastPost)
 
     const paginate = pageNumber => setCurrentPage(currentPage + 1);
 
@@ -51,7 +62,7 @@ const Home = () =>{
         <div className='Home'>
             <Filter />
             <Posts posts={currentPosts} loading={loading} />
-            <Pagination postsPerPage={postsPerPage} totalPosts={store.listRecipe.length} paginate={paginate} handleClick={handleClick}/>
+            <Pagination postsPerPage={postsPerPage} totalPosts={store.length} paginate={paginate} handleClick={handleClick}/>
             <Footer />
         </div>
     )

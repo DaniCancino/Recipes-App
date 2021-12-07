@@ -1,22 +1,33 @@
 import {React, useState} from 'react';
+import { useDispatch } from 'react-redux';
 import './SearchBar.css'
 
+
 const SearchBar = () =>{
-    const [element, setElement] = useState("");
-    console.log(element)
+    const [search, setSearch] = useState("");
+    const dispatch = useDispatch()
+
+    const searchByName = () =>{
+        dispatch({
+            type: 'FILTERED_BY_NAME',
+            payload: search
+        })
+    }
+
 
     return(
         <div className = 'search-bar'>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    setElement("");
+                    searchByName();
+                    setSearch("");
                   }}>
                 <input type='text'
                 placeholder='Search recipe..'
                 className= 'input'
-                value={element}
-                onChange={e => setElement(e.target.value)}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
                 ></input>
                 <button type='submit' value='Buscar' className='search'>Search</button>
             </form>

@@ -11,6 +11,7 @@
     border-radius: 4px;
     box-shadow: 5px 7px 10px #000;
     font-size: 14px;
+    padding: 0 10px;
 }
 
 .image{
@@ -31,7 +32,6 @@
     width: 90px;
     height: 40px;
     margin-top: 20px;
-    margin-left: 20px;
     border: 0.8px solid #BB1140;
     border-radius: 5px;
     background:#C70039;
@@ -45,6 +45,10 @@
     transform: scale(1.1, 1.1);
 }
 
+.view_button:active{
+    transform: scale(1.0, 1.0);
+}
+
 .Loading{
     font-display: flex;
     justify-content: center;
@@ -52,4 +56,10 @@
     font-size: 20px;
     color: #000;
     margin-top: 200px;
+}
+
+.recipe_score{
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 18px;
 }

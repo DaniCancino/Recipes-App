@@ -9,7 +9,13 @@ const Posts = ({posts, loading}) =>{
 
     return(
         <div className='grid'>
-             {posts.map(recipe =>(<Recipe key={recipe.id} title={recipe.title} image={recipe.image} diet={recipe.diets} loading={loading} />))}
+             {posts.map(element =>(<Recipe key={element.id} 
+             title={element.title} 
+             image={element.image} 
+             diet={element.diets} 
+             id={element.id}
+             score={element.spoonacularScore}
+             loading={loading} />))}
         
         </div>
     )

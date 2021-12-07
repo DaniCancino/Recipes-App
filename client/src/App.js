@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Nav from './components/Nav';
 import Add from './components/Add';
 import Recipe from './components/Recipe';
+import RecipeDetail from './components/RecipeDetail';
 
 
 function App() {
@@ -25,7 +26,12 @@ function App() {
         <Route exact path='/home'>
           <Recipe />
         </Route>
-        <Route exact path='/home/add'><Add /></Route>
+        <Route exact path='/home/add'>
+          <Add />
+        </Route>
+        <Route exact path='/home/:id'>
+          <RecipeDetail />
+        </Route>
         <Route><h1>404 Not Found!</h1></Route>
       </Switch>
     </div>

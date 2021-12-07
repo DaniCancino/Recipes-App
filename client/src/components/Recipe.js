@@ -1,7 +1,19 @@
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import './Recipe.css'
 
-const Recipe = ({title, image, diet, loading}) =>{
+const Recipe = ({title, image, diet, loading, id, score}) =>{
+
+    const dispatch = useDispatch()
+    const params = useParams()
+    const recipeDetail = (id) =>{
+        dispatch({
+            type: 'RECIPEDETAIL',
+            payload: id
+        })
+        window.scroll(0,0)
+    }
     if (loading) {
         return <h2 className='Loading'>Loading...</h2>;
       }
@@ -9,11 +21,13 @@ const Recipe = ({title, image, diet, loading}) =>{
     return(
         <div className='Recipe'>
             <h4>{title}</h4>
-            <img src={image} className='image' alt=''/>
+            <img src={image} className='image' alt='recipe-image'/>
             <div>
                 {diet.map(e=><span className='span'>{e}, </span>)}
             </div>
-            <button className='view_button'>View..</button>
+           
+           <Link to={`/home/${id}`}><button className='view_button' onClick={() =>recipeDetail(id)}>View..</button></Link>
+           <span className='recipe_score'>Score: {score}</span>
         </div>
     )
 }

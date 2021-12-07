@@ -16,6 +16,7 @@
 }
 .page-item:hover{
     background-color: #B2B2B2;
+    transform: scale(1.07, 1.07);
 }
 
 .page-link{

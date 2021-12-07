@@ -23,10 +23,25 @@ const initialCheckState = {
     lacto_ovo_vegetarian:false
 }
 
+ let validate = (input) =>{
+    let errors = {}
+    
+    if(!input.name){
+        errors.name = 'Name is required'
+    } else if(typeof(input.name) !== 'string'){
+        errors.name = 'Debe ingresar al menos una letra'
+    }else if(!Number.isInteger(parseInt(input.score))){
+        errors.score = 'please enter a number between 1 and 100'
+    } else if(!Number.isInteger(parseInt(input.level))){
+        errors.level = 'please enter a number between 1 and 100'
+    }
+    return errors
+}
 
 const Add = ({addRecipe}) =>{
     const [form, setForm] = useState(initialState);
     const [check, setCheck] = useState(initialCheckState)
+    const [errors, setErrors] = useState({});
     console.log(form)
 
     const handleChange = (e)=>{
@@ -34,6 +49,11 @@ const Add = ({addRecipe}) =>{
             ...form, 
              [e.target.name]: e.target.value
           });
+
+    setErrors(validate({
+            ...form,
+            [e.target.name]: e.target.value
+          }));
 
     }
     
@@ -54,9 +74,6 @@ const Add = ({addRecipe}) =>{
             } else{
                 setCheck({...check, [e.target.name]: false})
             }
-            console.log(form);
-            console.log(check)
-         
     }
     
 
@@ -66,11 +83,14 @@ const Add = ({addRecipe}) =>{
             <span className='obligatorio'>Las casillas marcadas con un asterisco (*) son obligatorias</span>
             <form className='form-add' onSubmit={handleSubmit}>
                 <label className='label'>*NAME</label>
-                <input type='text' name='name' id='name' value={form.name} onChange={handleChange}></input>
+                <input type='text' name='name' id='name' pattern="[a-zA-Z]"value={form.name} onChange={handleChange}/>
+                <p className='errors'>{errors.name}</p>
                 <label className='label' >*SCORE</label>
-                <input type='text' name='score' value={form.score}id='score'onChange={handleChange}></input>
+                <input type='text' name='score' value={form.score}id='score'onChange={handleChange}/>
+                <p className='errors'>{errors.score}</p>
                 <label className='label'>*FOOD LEVEL</label>
-                <input type='text' name='level' value={form.level} id='level' onChange={handleChange}></input>
+                <input type='text' name='level' value={form.level} id='level' onChange={handleChange}/>
+                <p className='errors'>{errors.level}</p>
                 <label className='label'>*RECIPE RESUME</label>
                 <textarea  name='resumen' value={form.resumen}id='resumen' onChange={handleChange}></textarea>
                 <label className='label'>*STEP BY STEP</label>
