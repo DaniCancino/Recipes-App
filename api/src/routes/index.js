@@ -31,18 +31,18 @@ router.get('/recipes', async  (req, res) =>{
 //  Nivel de "comida saludable"
 //  Paso a paso
 
-router.post('/recipe', async (req, res) =>{
+router.post('/home/add', async (req, res) =>{
     const {name, score, level, resumen, step, diet} = req.body;
+
     if(!name || !score || !level || !resumen || !step || !diet){
-        res.status(403).send({error: 'A input is empty or you have inserted a wrong data'})
+        res.status(403).send({error: 'An input is empty or you have inserted a wrong data'})
     }
     try{
-        const [recipe, created] = await Recipe.findOrCreate({
+        const [recipe] = await Recipe.findOrCreate({
             where:{
                 name,
                 score,
                 level,
-                score,
                 resumen,
                 step
             }
@@ -56,7 +56,7 @@ router.post('/recipe', async (req, res) =>{
 
         await recipe.AddDiet(diets)
         await diets.AddRecipe(recipe)
-        res.json()
+        res.status(200).send({message: 'The recipe has been added correctly'})
     }catch(e){
         res.status(500).send('there was an error', e)
     }

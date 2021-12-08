@@ -1,5 +1,5 @@
 const { DataTypes, Sequelize } = require('sequelize');
-const { sequelize } = require('../db.js')
+const { conn } = require('../db.js')
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 

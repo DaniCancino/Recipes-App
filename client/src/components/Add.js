@@ -38,7 +38,7 @@ const initialCheckState = {
     return errors
 }
 
-const Add = ({addRecipe}) =>{
+const Add = () =>{
     const [form, setForm] = useState(initialState);
     const [check, setCheck] = useState(initialCheckState)
     const [errors, setErrors] = useState({});
@@ -63,7 +63,6 @@ const Add = ({addRecipe}) =>{
     
     const handleSubmit = (e) =>{
         e.preventDefault()
-        addRecipe(form)
         handleReset()
     }
 
@@ -83,7 +82,7 @@ const Add = ({addRecipe}) =>{
             <span className='obligatorio'>Las casillas marcadas con un asterisco (*) son obligatorias</span>
             <form className='form-add' onSubmit={handleSubmit}>
                 <label className='label'>*NAME</label>
-                <input type='text' name='name' id='name' pattern="[a-zA-Z]"value={form.name} onChange={handleChange}/>
+                <input type='text' name='name' id='name' value={form.name} onChange={handleChange}/>
                 <p className='errors'>{errors.name}</p>
                 <label className='label' >*SCORE</label>
                 <input type='text' name='score' value={form.score}id='score'onChange={handleChange}/>
