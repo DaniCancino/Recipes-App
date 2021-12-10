@@ -17,9 +17,9 @@ const Filter = () =>{
         })
     }
 
-    const sortBy = () =>{
+    const sortBy = (sorting) =>{
         dispatch({
-            type: 'SORT',
+            type: 'ORDERBY',
             payload: sorting
         })
     }
@@ -44,9 +44,9 @@ const Filter = () =>{
 
                 <select className='select' onChange={(e) => setSorting(e.target.value)}>
                     <option value='all' selected>Sort by..</option>
-                    <option value='higher-score'>Higher score</option>
-                    <option value='lower-score'>Lower score</option>
-                    <option value='ascending'>Ascending alphabetical order (A - Z)</option>
+                    <option value='HIG'>Higher score</option>
+                    <option value='LOW'>Lower score</option>
+                    <option value='ASC'>Ascending alphabetical order (A - Z)</option>
                     <option value='descending'>Descending alphabetical order (Z - A)</option>
                 </select>
 

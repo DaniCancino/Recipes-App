@@ -26,7 +26,7 @@ const Recipe = ({title, image, diet, loading, id, score}) =>{
                 {diet.map(e=><span className='span'>{e}, </span>)}
             </div>
            
-           <Link to={`/home/${id}`}><button className='view_button' onClick={() =>recipeDetail(id)}>View..</button></Link>
+           <Link to={`/home/${id}`}><button className='view_button' onClick={() =>recipeDetail(id)}>See more...</button></Link>
            <span className='recipe_score'>Score: {score}</span>
         </div>
     )

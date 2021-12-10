@@ -9,7 +9,7 @@ const initialState = {
     level: "",
     resumen: "",
     step: "",
-    diet: []
+    diet: "vegan"
 }
 
 const initialCheckState = {
@@ -61,8 +61,14 @@ const Add = () =>{
         setForm(initialState)
     }
     
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
+      const res = await fetch('http://localhost:3001/recipes',{
+            method:'POST',
+            body: JSON.stringify(form),
+            headers: {"Content-Type": "application/json"}  
+        })
+        
         handleReset()
     }
 
@@ -97,13 +103,13 @@ const Add = () =>{
                 <label className='label'>*DIETS</label>
                 <div className='diets'>
                 <span><input name='vegetarian'type='checkbox' value='vegetarian' onClick={checked}></input> Vegetarian</span>
-                <span><input type='checkbox' name ='gluten_Free' value='gluten Free'onClick={checked} ></input> Gluten Free</span>
+                <span><input type='checkbox' name ='gluten Free' value='gluten Free'onClick={checked} ></input> Gluten Free</span>
                 <span><input type='checkbox' name='vegan' value='vegan' onClick={checked}></input> Vegan</span>
                 <span><input type='checkbox' name='dairyFree' value='dairyFree' onClick={checked}></input> DairyFree</span>
                 <span><input type='checkbox' name='paleolithic' value='paleolithic' onClick={checked}></input> Paleolithic</span>
                 <span><input type='checkbox' name='primal' value='primal' onClick={checked}></input> Primal</span>
-                <span><input type='checkbox' name='ovo_Vegetarian' value='ovo-Vegetarian' onClick={checked}></input> Ovo-Vegetarian</span>
-                <span><input type='checkbox' name='lacto_ovo_vegetarian' value='lacto ovo vegetarian' onClick={checked}></input> Lacto ovo vegetarian</span>
+                <span><input type='checkbox' name='ovo Vegetarian' value='ovo-Vegetarian' onClick={checked}></input> Ovo-Vegetarian</span>
+                <span><input type='checkbox' name='lacto ovo vegetarian' value='lacto ovo vegetarian' onClick={checked}></input> Lacto ovo vegetarian</span>
                 </div>
                 <button type='submit' className='submit_button'>ADD</button>
             </form>

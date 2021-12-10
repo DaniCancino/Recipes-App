@@ -1,6 +1,6 @@
 const initialState = {
     listRecipe: [],
-    sorted: [],
+    sort: [],
     filteredByName: [],
     filteredByDiet: [],
     filtered: ''
@@ -31,11 +31,20 @@ const recipeReducer = (state = initialState, action) =>{
             const filteredByDiet = state.listRecipe.filter(e => e.diets.includes(diet))
             return {...state, filteredByDiet}
         }
+        case 'ORDERBY': {
+            let sort = state.listRecipe.sort()
+            if(action.payload === 'HIG'){
+                return{...state, sort}
+            } else if(action.payload === 'LOW'){
+                 sort = sort.reverse()
+                return{...state, sort}
+            }
+        }
         case 'SORT': {
             
         }
         case 'RESET_HOME':
-            return {...state, filteredByName: [], sorted: [], filteredByDiet: [], filtered: ''}
+            return {...state, filteredByName: [], sort: [], filteredByDiet: [], filtered: ''}
         default:
             return state;
     }
