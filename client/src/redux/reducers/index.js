@@ -1,6 +1,7 @@
 const initialState = {
     listRecipe: [],
     sort: [],
+    addRecipe: [],
     filteredByName: [],
     filteredByDiet: [],
     filtered: ''
@@ -12,7 +13,7 @@ const recipeReducer = (state = initialState, action) =>{
         case 'GET_RECIPE':
             return{...state, listRecipe: action.payload}
         case 'ADD_RECIPE':
-            return[...state.listRecipe, action.payload]
+            return{...state, addRecipe: [...state.listRecipe, action.payload]}
         case 'RECIPEDETAIL':{
             const filter = state.listRecipe.filter(e => e.id === action.payload)
             return {...state, filter}

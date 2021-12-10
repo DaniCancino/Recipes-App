@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import './Recipe.css'
 
 const Recipe = ({title, image, diet, loading, id, score}) =>{
 
     const dispatch = useDispatch()
-    const params = useParams()
+  
     const recipeDetail = (id) =>{
         dispatch({
             type: 'RECIPEDETAIL',

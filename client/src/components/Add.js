@@ -1,7 +1,7 @@
 import {React, useState} from 'react';
 import './Add.css';
 import Footer from './Footer';
-import {addRecipe} from '../redux/actions/actions'
+import {useDispatch} from 'react-redux';
 
 const initialState = {
     name: "",
@@ -9,7 +9,7 @@ const initialState = {
     level: "",
     resumen: "",
     step: "",
-    diet: "vegan"
+    diet: []
 }
 
 const initialCheckState = {
@@ -23,7 +23,7 @@ const initialCheckState = {
     lacto_ovo_vegetarian:false
 }
 
- let validate = (input) =>{
+let validate = (input) =>{
     let errors = {}
     
     if(!input.name){
@@ -42,8 +42,10 @@ const Add = () =>{
     const [form, setForm] = useState(initialState);
     const [check, setCheck] = useState(initialCheckState)
     const [errors, setErrors] = useState({});
-    console.log(form)
 
+
+    const dispatch = useDispatch()
+    
     const handleChange = (e)=>{
         setForm({
             ...form, 
@@ -68,7 +70,10 @@ const Add = () =>{
             body: JSON.stringify(form),
             headers: {"Content-Type": "application/json"}  
         })
-        
+        dispatch({
+            type: 'ADD_RECIPE',
+            payload: form
+        })
         handleReset()
     }
 

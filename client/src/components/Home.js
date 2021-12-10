@@ -19,6 +19,8 @@ const Home = () =>{
             return state.filteredByName
         } else if(state.filteredByDiet.length > 0){
             return state.filteredByDiet
+        }else if(state.addRecipe.length >0){
+            return state.addRecipe
         }else{
             return state.listRecipe
         }
@@ -31,7 +33,7 @@ const Home = () =>{
     const getRecipe = async () =>{
         try{
             setLoading(true);
-        const response = await fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=671cef72b5aa4789baf05df16611c658&addRecipeInformation=true&number=90')
+        const response = await fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=8322db0795194094af7f01b8896bd299&addRecipeInformation=true&number=90')
         const data = await response.json()
         const resource = data.results;
         dispatch({
@@ -41,6 +43,7 @@ const Home = () =>{
         setLoading(false);
         }catch(error){console.log(error)}
     }
+
 
     useEffect(()=>{
         getRecipe()

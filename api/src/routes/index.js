@@ -1,7 +1,5 @@
 const { Router, express } = require('express');
-const {Recipe} = require('../models/Recipe')
-const {Diet} = require('../models/Diet')
-const { conn } = require('../db.js')
+const {Recipe, Diet} = require('../db.js')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -28,18 +26,38 @@ router.post('/recipes', async (req, res) =>{
                 step   
         })
 
-        const diets = await Diet.findOrCreate({
-            where: {diet: diet},
-            defaults: {diet}
-        })
+        for(let element of diet){
 
-        await recipe.setDiet(diets)
-        await diets.setRecipe(recipe)
+            const [diets, created] = await Diet.findOrCreate({
+                where: {diet: element},
+    
+            })
+
+            await recipe.addDiet(diets)
+        }
+
         res.status(200).send({message: 'The recipe has been added correctly'})
-    }catch{
-        res.status(500).send('error al cargar datos')
+    }catch(err){
+        console.error(err.message)
     }
 
 })
+
+router.get('/:idReceta', async function(req, res) {
+  
+      const {idReceta} = req.params;
+      const receta = await Recipe.findByPk(idReceta, {
+        include: Diet
+      });
+  
+      return receta ? res.json(receta) : res.status(404).send('Not Found Recipe')
+  });
+
+  router.get('/types', async function(req, res) {
+    
+    const allDiets = await Diet.findAll()
+
+     return allDiets ? res.json(allDiets): res.status(404).send('Not Found Diets')
+  });
 
 module.exports = router;
